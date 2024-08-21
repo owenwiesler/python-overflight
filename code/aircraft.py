@@ -53,7 +53,7 @@ try:
             destination = f'{details["airport"]["destination"]["name"]} ({flight.destination_airport_iata})'
         except (TypeError):
             destination = 'None'
-        p.text(f'{origin} → {destination}\n')
+        p.text(f'{origin} -> {destination}\n')
 
     if aircraft != '':
          p.text(f'Aircraft: {aircraft}\n')
@@ -64,7 +64,7 @@ try:
 
     # generate qr code
     link = f'flightradar24.com/{flight.callsign}'
-    p.qr(link, center=True)
+    p.qr(link, size=10, center=True)
     p.text('\n')
 
 except (IndexError):
