@@ -64,7 +64,7 @@ try:
 
     # generate qr code
     link = f'flightradar24.com/{flight.callsign}'
-    p.qr(link, size=10, center=True)
+    p.qr(link, size=8, center=True)
     p.text('\n')
 
 except (IndexError):
