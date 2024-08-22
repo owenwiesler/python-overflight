@@ -3,7 +3,7 @@ from escpos.printer import Usb
 import qrcode
 
 fr = FlightRadar24API()
-p = Usb(0x04b8, 0x0e20)
+p = Usb(0x04b8, 0x0e20, profile="TM-T88IV")
 
 center_lat = 39.95240587773885
 center_lon = -86.27362980160068
@@ -65,7 +65,6 @@ try:
     # generate qr code
     link = f'flightradar24.com/{flight.callsign}'
     p.qr(link, size=8, center=True)
-    p.text('\n')
 
 except (IndexError):
     print('No plane found.')
