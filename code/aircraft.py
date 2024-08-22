@@ -1,9 +1,9 @@
 from FlightRadar24 import FlightRadar24API
 from escpos.printer import Usb
-import qrcode
 
 fr = FlightRadar24API()
 p = Usb(0x04b8, 0x0e20, profile="TM-T88IV")
+p.profile.profile_data["media"]["width"]["pixels"] = 560
 
 center_lat = 39.95240587773885
 center_lon = -86.27362980160068
@@ -33,12 +33,11 @@ try:
     # print all details
     p.text('\n')
     if flight.callsign != '':
-        p.text(f'Callsign: {flight.callsign}\n')
-
-    if flight.registration != '':
-         p.text(f'Registration: {flight.registration}\n')
-
-    if airline != '':
+        p.set(bold=True, align='center', double_height=True, double_width=True)
+        p.text(f'{flight.callsign}\n')
+        p.set(bold=False, align='left', double_height=False, double_width=False)
+   
+    if flight.registration != '':          
          p.text(f'Airline: {airline}\n')
 
     if flight.number != '':
