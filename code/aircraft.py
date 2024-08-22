@@ -31,25 +31,28 @@ try:
          airline = ''
 
     # print all details
-    p.text('\n')
+    if airline != '':
+        p.set(align='left')
+        p.text(f'{airline}')
+        if flight.number != '':
+            p.set(align='right')
+            p.text(f'{flight.number}\n')
+
     if flight.callsign != '':
         p.set(bold=True, align='center', double_height=True, double_width=True)
         p.text(f'{flight.callsign}\n')
-        p.set(bold=False, align='left', double_height=False, double_width=False)
+        p.set(bold=False, double_height=False, double_width=False)
    
-    if flight.registration != '':          
-         p.text(f'Airline: {airline}\n')
-
-    if flight.number != '':
-        p.text(f'Flight number: {flight.number}\n')
+    if flight.registration != '':    
+         p.text(f'{flight.registration}\n')
 
     if flight.origin_airport_iata != '' or flight.destination_airport_iata != '':
         try:
-            origin = f'{details["airport"]["origin"]["name"]} ({flight.origin_airport_iata})'
+            origin = f'{flight.origin_airport_iata}'  # {details["airport"]["origin"]["name"]}
         except (TypeError):
             origin = 'None'
         try:
-            destination = f'{details["airport"]["destination"]["name"]} ({flight.destination_airport_iata})'
+            destination = f'{flight.destination_airport_iata}'  # {details["airport"]["destination"]["name"]}
         except (TypeError):
             destination = 'None'
         p.text(f'{origin} -> {destination}\n')
@@ -66,6 +69,7 @@ try:
     p.qr(link, size=8, center=True)
 
 except (IndexError):
-    print('No plane found.')
+    p.set(align='center')
+    p.text('No plane found.')
 
 p.cut()
