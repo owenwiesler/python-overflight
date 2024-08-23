@@ -82,3 +82,4 @@ except (IndexError):
     p.text('No plane found.')
 
 p.cut()
+p._image_send_graphics_data()
