@@ -3,25 +3,26 @@ from escpos.printer import Usb
 
 fr = FlightRadar24API()
 p = Usb(0x04b8, 0x0e20)
-p.profile.profile_data["media"]["width"]["pixels"] = 560  # Number based on trial and error 
+p.profile.profile_data["media"]["width"]["pixels"] = 560  # specific to TM-M30 Epson printer
 
-center_lat = # Latitude Coordinate
-center_lon = # Longitude Coordinate
-radius = # Boundary Radius
+# generate boundary
+center_lat = 0  # ENTER LATITUDE
+center_lon = 0  # ENTER LONGITUDE
+radius = 0  # ENTER RADIUS (meters)
 bounds = fr.get_bounds_by_point(center_lat, center_lon, radius)
 
-# generate all flights in bounds
+# generate all flights in boundary
 all_flights = fr.get_flights(bounds = bounds)
 
 try:
-    # find closest flight within bounds and set it equal to flight object
+    # find closest flight to center within bounds
     flight_dis = []
     for flight in all_flights:
         distance = ((flight.latitude - center_lat) ** 2) + ((flight.longitude - center_lon) ** 2)
         flight_dis.append({"distance": distance, "flight": flight})
     
     flight_dis = sorted(flight_dis, key=lambda d: d['distance'])
-    flight = flight_dis[0]
+    flight = flight_dis[0]['flight']
 
     # gather extra details for flight
     details = fr.get_flight_details(flight)
@@ -73,7 +74,7 @@ try:
          p.set(align='center') 
          p.text(f'{flight.registration}\n')
 
-    # generate qr code
+    # create qr code
     link = f'flightradar24.com/{flight.callsign}'
     p.qr(link, size=8, center=True)
 
