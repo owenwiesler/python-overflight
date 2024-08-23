@@ -8,14 +8,22 @@ p.profile.profile_data["media"]["width"]["pixels"] = 560  # Number based on tria
 center_lat = # Latitude Coordinate
 center_lon = # Longitude Coordinate
 radius = # Boundary Radius
+bounds = fr.get_bounds_by_point(center_lat, center_lon, radius)
 
 # generate all flights in bounds
-bounds = fr.get_bounds_by_point(center_lat, center_lon, radius)
 all_flights = fr.get_flights(bounds = bounds)
 
 try:
-    # generate details for flight of index 0
-    flight = all_flights[0]
+    # find closest flight within bounds and set it equal to flight object
+    flight_dis = []
+    for flight in all_flights:
+        distance = ((flight.latitude - center_lat) ** 2) + ((flight.longitude - center_lon) ** 2)
+        flight_dis.append({"distance": distance, "flight": flight})
+    
+    flight_dis = sorted(flight_dis, key=lambda d: d['distance'])
+    flight = flight_dis[0]
+
+    # gather extra details for flight
     details = fr.get_flight_details(flight)
 
     # create variable for plane 
@@ -74,3 +82,4 @@ except (IndexError):
     p.text('No plane found.')
 
 p.cut()
+p._image_send_graphics_data()
