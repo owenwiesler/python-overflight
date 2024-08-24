@@ -91,9 +91,12 @@ while True:
             link = f'flightradar24.com/{flight.callsign}'
             p.qr(link, size=8, center=True)
 
+            print('Aircraft printed.')
+
         except (IndexError):
             p.set(align='center')
             p.text('No plane found.')
+            print('No plane found.')
 
         p.cut()
 
