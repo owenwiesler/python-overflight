@@ -17,10 +17,24 @@ This script makes use of:
 
 ## Usage
 
-### Raspberry Pi
+### Raspberry Pi / Linux
 
 In my case, this script is running off of a Raspberry Pi Zero W. The script runs on boot up, initially importing the required modules. The script then looks for a file to be written to a path that, once seen, runs the rest of the code. This was done to eliminate the time taken to import the modules that takes a surprisngly long time.
 
 At the moment, I have a shortcut on my iPhone that is able to SSH into the Pi and using the *touch* command, writes a file to the path that the Pi looks for. On execution, the script deletes the created file and goes into the pause phase, waiting again for a file to be created. This works with Siri and runs fast enough for my uses. 
 
-For the entire setup, please see [rpi-setup](
+For the entire setup, please see [rpi-setup](https://github.com/owenwiesler/python-overflight/blob/main/rpi-setup.md).
+
+### Macintosh
+
+Unavailable. 
+
+Aircraft data gathering works well (and quickly), but unable to print using the thermal receipt printer I have available, and Epson TM-M30. 
+
+### Windows
+
+Unavailable. 
+
+## Documentation
+
+*To come...*
