@@ -29,7 +29,7 @@ For the entire setup, please see [rpi-setup](https://github.com/owenwiesler/pyth
 
 Unavailable. 
 
-Aircraft data gathering works well (and quickly), but unable to print using the thermal receipt printer I have available, and Epson TM-M30. 
+Aircraft data gathering works well (and quickly), but unable to print using the thermal receipt printer I have available, an Epson TM-M30. 
 
 #### Windows
 
