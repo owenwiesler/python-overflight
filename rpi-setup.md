@@ -28,17 +28,14 @@ It is possible that an error will occur at this stage: "This environment is exte
     ```
     - This must be executed from the same directory that the script is present in. 
     - If using a Pi OS that includes desktop, the script can be downloaded straight from the Pi iteslf into the desired directory.
-    <br />
 
 2. Edit the *center_lon*, *center_lat*, and *radius* variables to the match the region that the script will look for aircraft in.
     - To edit the script from the Pi, run the following command from within the terminal:
     ```
     sudo nano aircraft.py
     ```
-    <br />
 
 3. Edit the *path_start* and *path_stop* variables. These are the paths that the script will look for to either execute itself, or stop entirely.
-   <br />
 
 4. To have the program run continuously from boot up, the *cron* scheduling utility will be used. To use cron, enter this command in the terminal:
     ```
@@ -49,24 +46,20 @@ It is possible that an error will occur at this stage: "This environment is exte
     @reboot sleep30; python3 /home/pi/aircraft.py &
     ```
     - The *sleep30* adds a 30 second delay from when the Pi boots up to when the program is started. This can be changed, or removed, but to assure that all the required packages for the program are loaded before running, it is left in.
-    <br />
 
 5. Reboot the Pi:
     ```
     sudo reboot
     ```
-    <br />
 
 6. Check to see if the program is running:
     ```
     ps -aef | grep python
     ```
-    <br />
 
 7. Write the necessary file to the start path to run the program:
     ```
     touch XXXXX
     ```
-    <br />
 
 8. [Optional] Create a shortcut to run the program from an iPhone using "Run script over SSH". Input all required information. 
