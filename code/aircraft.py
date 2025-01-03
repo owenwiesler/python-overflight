@@ -5,6 +5,8 @@ from FlightRadar24 import FlightRadar24API
 from escpos.printer import Usb
 
 fr = FlightRadar24API()
+p = Usb(0x04b8, 0x0e20)  # connect to printer
+p.profile.profile_data["media"]["width"]["pixels"] = 560  # specific to TM-M30 Epson printer
 
 # paths to start or stop file
 path_start = "###"
@@ -21,9 +23,6 @@ while True:
 
     if os.path.exists(path_start):  
         os.remove(path_start)
-
-        p = Usb(0x04b8, 0x0e20)  # connect to printer
-        p.profile.profile_data["media"]["width"]["pixels"] = 560  # specific to TM-M30 Epson printer
         
         # generate all flights in boundary
         all_flights = fr.get_flights(bounds = bounds)
